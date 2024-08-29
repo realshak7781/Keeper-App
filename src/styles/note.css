@@ -1,0 +1,13 @@
+.note button {
+  background-color: transparent; /* Make the background transparent */
+  color: #efa70b; /* Set the text color */
+  border: none; /* Remove the border */
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.note button:hover {
+  color: #ecb80e; /* Change the text color on hover */
+}
