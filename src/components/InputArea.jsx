@@ -1,10 +1,17 @@
 import React, { useState } from "react";
+import AddTaskIcon from '@mui/icons-material/AddTask';
+import Fab from '@mui/material/Fab';
+import Zoom from '@mui/material/Zoom';
 
 function InputArea(props) {
     const [task, setTask] = useState({
         title: "",
         content: ""
     });
+
+    const isButtonVisible = task.content.length > 0;
+
+    const rowsCount = isButtonVisible ? 3 : 1;
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -27,25 +34,30 @@ function InputArea(props) {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <input
-                    name="title"
-                    onChange={handleChange}
-                    value={task.title}  // Bind input value to state
-                    type="text"
-                    placeholder="Title"
-                />
+            <form className="create-note" onSubmit={handleSubmit}>
+            {isButtonVisible && (
+                    <input
+                        name="title"
+                        onChange={handleChange}
+                        value={task.title}  // Bind input value to state
+                        type="text"
+                        placeholder="Title"
+                    />
+                )}
                 <textarea
                     name="content"
                     onChange={handleChange}
                     value={task.content}  // Bind textarea value to state
                     placeholder="Take a note..."
-                    rows="3"
+                    rows={rowsCount}
                 ></textarea>
-                <button type="submit">
-                    Add
-                </button>
+                <Zoom in={isButtonVisible}>
+                <Fab type="submit">
+                <AddTaskIcon/>
+                </Fab>
+                </Zoom>
             </form>
+           
         </div>
     );
 }
